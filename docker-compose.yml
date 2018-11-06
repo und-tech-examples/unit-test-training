@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  api:
+    image: clue/json-server
+    container_name: 'json_server'
+    ports:
+      - '8080:80'
+    volumes:
+      - './resources/api/db.json:/data/db.json'
+
+  python:
+    build:
+      context: './resources/python'
+    container_name: 'python_container'
+    volumes:
+      - './app:/app'
+
+  nodejs:
+    build:
+      context: './resources/nodejs'
+    container_name: 'nodejs_container'
+    volumes:
+      - './app:/app'
+
+  php:
+    build:
+      context: './resources/php'
+    container_name: 'php_container'
+    volumes:
+      - './app:/app'
